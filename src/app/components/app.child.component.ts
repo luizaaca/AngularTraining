@@ -2,9 +2,14 @@ import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'child-component',
-    template: `{{name}}`
+    template: `{{obj.name}}<br>`
 })
 
 export class ChildComponent {
-    @Input() name: string;
+    @Input() obj: Classe;
+}
+
+export class Classe{
+    name: String;
+    id: number;
 }

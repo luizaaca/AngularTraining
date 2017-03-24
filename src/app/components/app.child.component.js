@@ -14,16 +14,22 @@ var ChildComponent = (function () {
     }
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', String)
-    ], ChildComponent.prototype, "name", void 0);
+        __metadata('design:type', Classe)
+    ], ChildComponent.prototype, "obj", void 0);
     ChildComponent = __decorate([
         core_1.Component({
             selector: 'child-component',
-            template: "{{name}}"
+            template: "{{obj.name}}<br>"
         }), 
         __metadata('design:paramtypes', [])
     ], ChildComponent);
     return ChildComponent;
 }());
 exports.ChildComponent = ChildComponent;
+var Classe = (function () {
+    function Classe() {
+    }
+    return Classe;
+}());
+exports.Classe = Classe;
 //# sourceMappingURL=app.child.component.js.map
