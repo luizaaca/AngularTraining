@@ -6,5 +6,9 @@ h1 {
 .teste{
   background-color: blue;
   color: white;
-  width: 15%;
+  width: 20%;
+}
+.italic{
+  font-size: 20px;
+  font-style: italic;
 }

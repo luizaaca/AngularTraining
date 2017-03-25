@@ -1,0 +1,36 @@
+<h1>Hello {{name}}</h1>
+<img bind-src="getSrc()">
+<img src="{{getSrc()}}"><br>
+<button [disabled]="isUnchanged">Cancel is disabled</button>
+<div [ngClass]="classes">[ngClass] binding to the classes property</div>
+<child-component obj="{{child}}"></child-component>
+<p>// interpolação só funciona com strings, em caso de objetos complexos usar property binding</p>
+<child-component [obj]="child"></child-component>
+<p><span>"{{evilTitle}}" is the <i>interpolated</i> evil title.</span></p>
+<p>"<span [innerHTML]="evilTitle"></span>" is the <i>property bound</i> evil title.</p>
+<table border=1>
+    <!--  expression calculates colspan=2 -->
+    <tr>
+        <td [attr.colspan]="1 + 1">One-Two</td>
+    </tr>
+    <!-- ERROR: There is no `colspan` property to set!
+    <tr><td colspan="{{1 + 1}}">Three-Four</td></tr>
+      -->
+    <tr>
+        <td>Five</td>
+        <td>Six</td>
+    </tr>
+</table>
+<br>
+<!-- create and set an aria attribute for assistive technology -->
+<button [attr.aria-label]="actionName" (click)="toogleClass()">{{actionName}} with Aria</button>
+
+<!-- toggle the "special" class on/off with a property -->
+<div [class.teste]="isSpecial">The class binding is special</div>
+
+<!-- binding to `class.special` trumps the class attribute -->
+<div class="teste"
+     [class.teste]="!isSpecial">This one is not so special</div>
+
+<button [style.font-size.em]="isSpecial ? 3 : 1" >Big</button>
+<button [style.fontSize.%]="!isSpecial ? 150 : 50" >Small</button>
