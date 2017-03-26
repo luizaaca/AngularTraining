@@ -20,18 +20,12 @@ var ChildComponent = (function () {
         this.eventoTeste.emit(this.novoObjeto);
         console.log(this.novoObjeto);
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Classe)
-    ], ChildComponent.prototype, "obj", void 0);
-    __decorate([
-        core_1.Output("testeEventoTeste"), 
-        __metadata('design:type', Object)
-    ], ChildComponent.prototype, "eventoTeste", void 0);
     ChildComponent = __decorate([
         core_1.Component({
             selector: 'child-component',
-            template: "\n    <hr>\n    <h3>ChildComponent</h3>\n    <p>{{obj.name}}</p>\n    <label>Funciona two-way com ngModel</label><input [(ngModel)]=\"obj.name\"/><br>\n    <label>Teste EventEmitter - Veja console.log()</label>\n    <input (input)=\"dispara($event.target.value)\" />\n    <hr>\n    "
+            template: "\n    <hr>\n    <h3>ChildComponent</h3>\n    <p>{{obj | json}}</p>\n    <label>Funciona two-way com ngModel</label><input [(ngModel)]=\"obj.name\"/><br>\n    <label>Teste EventEmitter - Veja console.log()</label>\n    <input (input)=\"dispara($event.target.value)\" />\n    <hr>\n    ",
+            inputs: ['obj'],
+            outputs: ['eventoTeste:testeEventoTeste']
         }), 
         __metadata('design:paramtypes', [])
     ], ChildComponent);
