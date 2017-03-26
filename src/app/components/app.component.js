@@ -20,6 +20,7 @@ var AppComponent = (function () {
         this.evilTitle = 'Template <script>alert("evil never sleeps")</script> Syntax';
         this.actionName = 'Toogle Class';
         this.isSpecial = true;
+        this.fontSizePx = 10;
         this.child.name = 'Angular Child++++';
         this.child.id = 1;
     }
@@ -28,6 +29,9 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.toogleClass = function () {
         this.isSpecial = !this.isSpecial;
+    };
+    AppComponent.prototype.recebeEvento = function (event) {
+        console.log(event);
     };
     AppComponent = __decorate([
         core_1.Component({

@@ -1,12 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'child-component',
-    template: `{{obj.name}}<br>`
+    template: `
+    <hr>
+    <h3>ChildComponent</h3>
+    <p>{{obj.name}}</p>
+    <label>Funciona two-way com ngModel</label><input [(ngModel)]="obj.name"/><br>
+    <label>Teste EventEmitter - Veja console.log()</label>
+    <input (input)="dispara($event.target.value)" />
+    <hr>
+    `
 })
 
 export class ChildComponent {
     @Input() obj: Classe;
+
+    @Output("testeEventoTeste") eventoTeste = new EventEmitter<Classe>();
+    //Necessário utilizar Output() para emissor de eventos.
+
+    novoObjeto = new Classe();
+
+    dispara(nome: string){
+        this.novoObjeto.name = nome;
+        this.eventoTeste.emit(this.novoObjeto);
+        console.log(this.novoObjeto);
+        
+    }
 }
 
 export class Classe{

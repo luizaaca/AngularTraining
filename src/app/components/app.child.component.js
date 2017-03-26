@@ -11,15 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ChildComponent = (function () {
     function ChildComponent() {
+        this.eventoTeste = new core_1.EventEmitter();
+        //Necessário utilizar Output() para emissor de eventos.
+        this.novoObjeto = new Classe();
     }
+    ChildComponent.prototype.dispara = function (nome) {
+        this.novoObjeto.name = nome;
+        this.eventoTeste.emit(this.novoObjeto);
+        console.log(this.novoObjeto);
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Classe)
     ], ChildComponent.prototype, "obj", void 0);
+    __decorate([
+        core_1.Output("testeEventoTeste"), 
+        __metadata('design:type', Object)
+    ], ChildComponent.prototype, "eventoTeste", void 0);
     ChildComponent = __decorate([
         core_1.Component({
             selector: 'child-component',
-            template: "{{obj.name}}<br>"
+            template: "\n    <hr>\n    <h3>ChildComponent</h3>\n    <p>{{obj.name}}</p>\n    <label>Funciona two-way com ngModel</label><input [(ngModel)]=\"obj.name\"/><br>\n    <label>Teste EventEmitter - Veja console.log()</label>\n    <input (input)=\"dispara($event.target.value)\" />\n    <hr>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], ChildComponent);

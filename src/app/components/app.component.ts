@@ -16,6 +16,7 @@ export class AppComponent {
   evilTitle = 'Template <script>alert("evil never sleeps")</script> Syntax';
   actionName = 'Toogle Class';
   isSpecial = true;
+  fontSizePx = 10;
 
   constructor() {
     this.child.name = 'Angular Child++++';
@@ -26,7 +27,11 @@ export class AppComponent {
     return this.heroImageUrl;
   }
 
-  toogleClass(){
+  toogleClass() {
     this.isSpecial = !this.isSpecial;
+  }
+
+  recebeEvento(event: Classe) {
+    console.log(event);
   }
 }

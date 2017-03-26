@@ -3,9 +3,11 @@
 <img src="{{getSrc()}}"><br>
 <button [disabled]="isUnchanged">Cancel is disabled</button>
 <div [ngClass]="classes">[ngClass] binding to the classes property</div>
-<child-component obj="{{child}}"></child-component>
-<p>// interpolação só funciona com strings, em caso de objetos complexos usar property binding</p>
-<child-component [obj]="child"></child-component>
+<!--<child-component obj="{{child}}"></child-component>
+<p>// interpolação só funciona com strings, em caso de objetos complexos usar property binding</p>-->
+<input [value]="child.name" (input)="child.name=$event.target.value">
+<input [(ngModel)]="child.name"><br>
+<child-component (testeEventoTeste)="recebeEvento($event)" [(obj)]="child"></child-component>
 <p><span>"{{evilTitle}}" is the <i>interpolated</i> evil title.</span></p>
 <p>"<span [innerHTML]="evilTitle"></span>" is the <i>property bound</i> evil title.</p>
 <table border=1>
@@ -23,14 +25,17 @@
 </table>
 <br>
 <!-- create and set an aria attribute for assistive technology -->
-<button [attr.aria-label]="actionName" (click)="toogleClass()">{{actionName}} with Aria</button>
+<button [attr.aria-label]="actionName" on-click="toogleClass()">{{actionName}} with Aria</button>
 
 <!-- toggle the "special" class on/off with a property -->
 <div [class.teste]="isSpecial">The class binding is special</div>
 
 <!-- binding to `class.special` trumps the class attribute -->
-<div class="teste"
-     [class.teste]="!isSpecial">This one is not so special</div>
+<div class="teste" [class.teste]="!isSpecial">This one is not so special</div>
 
-<button [style.font-size.em]="isSpecial ? 3 : 1" >Big</button>
-<button [style.fontSize.%]="!isSpecial ? 150 : 50" >Small</button>
+<button [style.font-size.em]="isSpecial ? 3 : 1">Big</button>
+<button [style.fontSize.%]="!isSpecial ? 150 : 50">Small</button>
+<br>
+<hr>
+<my-sizer [(size)]="fontSizePx"></my-sizer>
+<div [style.font-size.px]="fontSizePx">Resizable Text</div>

@@ -10,17 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var forms_1 = require('@angular/forms');
 var app_component_1 = require('./components/app.component');
 var app_child_component_1 = require('./components/app.child.component');
+var app_sizer_component_1 = require("./components/app.sizer.component");
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
             declarations: [
                 app_component_1.AppComponent,
-                app_child_component_1.ChildComponent
+                app_child_component_1.ChildComponent,
+                app_sizer_component_1.SizerComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
