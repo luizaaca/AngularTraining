@@ -11,7 +11,7 @@ export class AppComponent {
   name = 'Angular';
   heroImageUrl = 'http://kingofwallpapers.com/imagem/imagem-005.jpg';
   isUnchanged = true;
-  classes = 'teste italic';
+  classes = { teste: true, italic: true };
   child = new Classe();
   evilTitle = 'Template <script>alert("evil never sleeps")</script> Syntax';
   actionName = 'Toogle Class';
