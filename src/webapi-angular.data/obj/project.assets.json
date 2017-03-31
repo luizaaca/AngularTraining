@@ -3708,16 +3708,16 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Luiz\\OneDrive\\Documentos\\Angular\\webapi-angular\\src\\webapi-angular.data\\webapi-angular.data.csproj",
+      "projectUniqueName": "c:\\Users\\Luiz\\OneDrive\\Documentos\\Angular\\webapi-angular\\src\\webapi-angular.data\\webapi-angular.data.csproj",
       "projectName": "webapi-angular.data",
-      "projectPath": "C:\\Users\\Luiz\\OneDrive\\Documentos\\Angular\\webapi-angular\\src\\webapi-angular.data\\webapi-angular.data.csproj",
-      "outputPath": "C:\\Users\\Luiz\\OneDrive\\Documentos\\Angular\\webapi-angular\\src\\webapi-angular.data\\obj\\",
+      "projectPath": "c:\\Users\\Luiz\\OneDrive\\Documentos\\Angular\\webapi-angular\\src\\webapi-angular.data\\webapi-angular.data.csproj",
+      "outputPath": "c:\\Users\\Luiz\\OneDrive\\Documentos\\Angular\\webapi-angular\\src\\webapi-angular.data\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netstandard1.4"
       ],
       "files": {
-        "lib/netstandard1.4/webapi-angular.data.dll": "C:\\Users\\Luiz\\OneDrive\\Documentos\\Angular\\webapi-angular\\src\\webapi-angular.data\\bin\\placeholder\\netstandard1.4\\webapi-angular.data.dll"
+        "lib/netstandard1.4/webapi-angular.data.dll": "c:\\Users\\Luiz\\OneDrive\\Documentos\\Angular\\webapi-angular\\src\\webapi-angular.data\\bin\\placeholder\\netstandard1.4\\webapi-angular.data.dll"
       },
       "frameworks": {
         "netstandard1.4": {
