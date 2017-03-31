@@ -1,15 +1,14 @@
 {
     "version": "0.2.0",
     "configurations": [
-        
         {
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}\\src\\webapi-angular\\bin\\Debug\\netcoreapp1.1\\WebapiAngular.dll",
+            "program": "${workspaceRoot}\\bin\\Debug\\netcoreapp1.1\\WebapiAngular.dll",
             "args": [],
-            "cwd": "${workspaceRoot}\\src\\webapi-angular",
+            "cwd": "${workspaceRoot}",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
