@@ -4,3 +4,5 @@ C:\Users\Luiz\OneDrive\Documentos\Angular\webapi-angular\src\webapi-angular.data
 C:\Users\Luiz\OneDrive\Documentos\Angular\webapi-angular\src\webapi-angular.data\obj\Debug\netstandard1.4\webapi-angular.data.AssemblyInfo.cs
 C:\Users\Luiz\OneDrive\Documentos\Angular\webapi-angular\src\webapi-angular.data\obj\Debug\netstandard1.4\webapi-angular.data.dll
 C:\Users\Luiz\OneDrive\Documentos\Angular\webapi-angular\src\webapi-angular.data\obj\Debug\netstandard1.4\webapi-angular.data.pdb
+C:\Users\Luiz\OneDrive\Documentos\Angular\webapi-angular\src\webapi-angular.data\bin\Debug\netstandard1.4\webapi-angular.model.dll
+C:\Users\Luiz\OneDrive\Documentos\Angular\webapi-angular\src\webapi-angular.data\bin\Debug\netstandard1.4\webapi-angular.model.pdb

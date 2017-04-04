@@ -1,3 +1,4 @@
 Feita uma estrutura básica na "solução" em que os três projetos estão plugados. A ideia é criar uma aplicação em camadas com persistencia em banco.
 Para fazer a integração dos projetos não foi necessário o uso do arquivo project.json, apenas adicionei os paths dos outros dois projetos em tags
 "<ProjectReference>" no csproj do projeto dependente.
+Uma ressalva a ser registrada é que criei os diretórios usando o kebab-case e na criação dos projetos feita pelo dotnet o nome dos projetos e dos namespaces foram herdados dos diretórios. Pretendo modificar isso se possível, caso não criarei os diretórios utilizando PascalCase.
