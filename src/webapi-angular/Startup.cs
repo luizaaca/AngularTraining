@@ -13,6 +13,7 @@ using Newtonsoft.Json.Serialization;
 using System.Net;
 using Microsoft.AspNetCore.Diagnostics;
 using WebApiAngular.Core;
+using WebApiAngular.ViewModels.Mappings;
 
 namespace WebApplicationBasic
 {
@@ -49,7 +50,7 @@ namespace WebApplicationBasic
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAttendeeRepository, AttendeeRepository>();
 
-            //AutoMapperConfiguration.Configure();
+            AutoMapperConfiguration.Configure();
 
             services.AddCors();
         }
@@ -68,26 +69,23 @@ namespace WebApplicationBasic
                     HotModuleReplacement = true
                 });
             }
-            else
-            {
-                app.UseExceptionHandler(
-                  builder =>
-                  {
-                      builder.Run(
-                        async context =>
-                        {
-                            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                            context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            app.UseExceptionHandler(
+              builder =>
+              {
+                  builder.Run(
+                    async context =>
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
 
                             var error = context.Features.Get<IExceptionHandlerFeature>();
-                            if (error != null)
-                            {
-                                context.Response.AddApplicationError(error.Error.Message);
-                                await context.Response.WriteAsync(error.Error.Message).ConfigureAwait(false);
-                            }
-                        });
-                  });
-            }
+                        if (error != null)
+                        {
+                            context.Response.AddApplicationError(error.Error.Message);
+                            await context.Response.WriteAsync(error.Error.Message).ConfigureAwait(false);
+                        }
+                    });
+              });
 
             app.UseStaticFiles();
 
