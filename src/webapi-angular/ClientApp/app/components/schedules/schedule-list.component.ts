@@ -5,7 +5,7 @@ import { ModalDirective } from 'ng2-bootstrap';
 import { DataService } from '../../shared/services/data.service';
 import { DateFormatPipe } from '../../shared/pipes/date-format.pipe';
 import { ItemsService } from '../../shared/utils/items.service';
-// import { NotificationService } from '../../shared/utils/notification.service';
+import { NotificationService } from '../../shared/utils/notification.service';
 import { ConfigService } from '../../shared/utils/config.service';
 import { ISchedule, IScheduleDetails, Pagination, PaginatedResult } from '../../shared/interfaces';
 
@@ -45,7 +45,7 @@ export class ScheduleListComponent implements OnInit {
     schedules: ISchedule[];
     apiHost: string;
 
-    public itemsPerPage: number = 2;
+    public itemsPerPage: number = 3;
     public totalItems: number = 0;
     public currentPage: number = 1;
 
@@ -62,11 +62,12 @@ export class ScheduleListComponent implements OnInit {
     animation: boolean = true;
     keyboard: boolean = true;
     backdrop: string | boolean = true;
+    // addingSchedule = false;
 
     constructor(
         private dataService: DataService,
         private itemsService: ItemsService,
-        // private notificationService: NotificationService,
+        private notificationService: NotificationService,
         private configService: ConfigService
     ) { }
 
@@ -76,13 +77,12 @@ export class ScheduleListComponent implements OnInit {
     }
 
     loadSchedules() {
-
         this.dataService.getSchedules(this.currentPage, this.itemsPerPage)
             .subscribe((res: PaginatedResult<ISchedule[]>) => {
                 this.schedules = res.result;
                 this.totalItems = res.pagination.TotalItems;
             }, error => {
-                // this.notificationService.printErrorMessage('Failed to load schedules. ' + error);
+                this.notificationService.printErrorMessage('Failed to load schedules. ' + error);
             });
     }
 
@@ -92,17 +92,17 @@ export class ScheduleListComponent implements OnInit {
     }
 
     removeSchedule(schedule: ISchedule){
-        // this.notificationService.openConfirmationDialog('Are you sure you want to delete this schedule?',
-        // () => {
-        //     this.dataService.deleteSchedule(schedule.id)
-        //     .subscribe(() =>
-        //      {
-        //          this.itemsService.removeItemFromArray<ISchedule>(this.schedules, schedule);
-        //          this.notificationService.printSuccessMessage(schedule.title + ' has been deleted.');
-        //      }, error => {
-        //          this.notificationService.printErrorMessage('Failed to delete ' + schedule.title + ' ' + error);
-        //      })
-        // });
+        this.notificationService.openConfirmationDialog('Are you sure you want to delete this schedule?',
+        () => {
+            this.dataService.deleteSchedule(schedule.id)
+            .subscribe(() =>
+             {
+                 this.itemsService.removeItemFromArray<ISchedule>(this.schedules, schedule);
+                 this.notificationService.printSuccessMessage(schedule.title + ' has been deleted.');
+             }, error => {
+                 this.notificationService.printErrorMessage('Failed to delete ' + schedule.title + ' ' + error);
+             })
+        });
     }
 
     viewScheduleDetails(id: number) {
@@ -119,7 +119,7 @@ export class ScheduleListComponent implements OnInit {
             },
             error => {
                 //this.slimLoader.complete();
-                // this.notificationService.printErrorMessage('Failed to load schedule. ' + error);
+                this.notificationService.printErrorMessage('Failed to load schedule. ' + error);
             });
     }
 

@@ -48,7 +48,7 @@ export class UserListComponent implements OnInit {
 
     addUser() {
         this.addingUser = true;
-        var newUser = { id: -1, name: '', avatar: 'avatar_05.png', profession: '', schedulesCreated: 0 };
+        var newUser = { id: -1, name: '', avatar: 'avatar_01.png', profession: '', schedulesCreated: 0 };
         this.itemsService.addItemToStart<IUser>(this.users, newUser);
         //this.users.splice(0, 0, newUser);
     }

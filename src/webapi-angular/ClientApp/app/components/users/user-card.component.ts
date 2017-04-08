@@ -120,8 +120,6 @@ export class UserCardComponent implements OnInit {
                 this.dataService.deleteUser(this.user.id)
                     .subscribe(
                     res => {
-                        this.notificationService.printSuccessMessage('The user '
-                            + this.user.name + ' has been removed.');
                         this.removeUser.emit({
                             value: this.user
                         });

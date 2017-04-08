@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Route } from '@angular/router';
 
-import { DatepickerModule, PaginationModule } from 'ng2-bootstrap';
+import { DatepickerModule } from 'ng2-bootstrap';
+import { PaginationModule } from 'ng2-bootstrap';
 import { Ng2BootstrapModule } from 'ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap';
 import { ProgressbarModule } from 'ng2-bootstrap';
@@ -30,6 +31,16 @@ import { ItemsService } from './shared/utils/items.service';
 import { MappingService } from './shared/utils/mapping.service';
 import { NotificationService } from './shared/utils/notification.service';
 
+const routes: Route[] = [
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
+    { path: 'counter', component: CounterComponent },
+    { path: 'fetch-data', component: FetchDataComponent },
+    { path: 'users', component: UserListComponent },
+    { path: 'schedules', component: ScheduleListComponent },
+    { path: 'schedules/:id/edit', component: ScheduleEditComponent },
+    // { path: '**', redirectTo: 'home' }
+];
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -49,22 +60,13 @@ import { NotificationService } from './shared/utils/notification.service';
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
-        RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
-            { path: 'users', component: UserListComponent },
-            { path: 'schedules', component: ScheduleListComponent },
-            { path: 'schedules/:id/edit', component: ScheduleEditComponent },
-           // { path: '**', redirectTo: 'home' }
-        ]),
-        DatepickerModule,
+        RouterModule.forRoot(routes),
+        DatepickerModule.forRoot(),
         Ng2BootstrapModule,
-        ModalModule,
+        ModalModule.forRoot(),
         ProgressbarModule,
-        PaginationModule,
-        TimepickerModule
+        PaginationModule.forRoot(),
+        TimepickerModule.forRoot()
     ],
     providers: [
         ConfigService,
@@ -76,3 +78,4 @@ import { NotificationService } from './shared/utils/notification.service';
 })
 export class AppModule {
 }
+

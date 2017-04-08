@@ -65,24 +65,7 @@ export class DataService {
         })
         .catch(this.handleError);
     }
-    
-    /*
-    getSchedules(page?: number, itemsPerPage?: number): Observable<ISchedule[]> {
-        let headers = new Headers();
-        if (page != null && itemsPerPage != null) {
-            headers.append('Pagination', page + ',' + itemsPerPage);
-        }
- 
-        return this.http.get(this.baseUrl + 'schedules', {
-            headers: headers
-        })
-            .map((res: Response) => {
-                return res.json();
-            })
-            .catch(this.handleError);
-    }
-    */
- 
+        
     getSchedules(page?: number, itemsPerPage?: number): Observable<PaginatedResult<ISchedule[]>> {
         var paginatedResult: PaginatedResult<ISchedule[]> = new PaginatedResult<ISchedule[]>();
  
@@ -126,7 +109,6 @@ export class DataService {
     }
  
     updateSchedule(schedule: ISchedule): Observable<void> {
- 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
  
