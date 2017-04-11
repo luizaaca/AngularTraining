@@ -30,23 +30,23 @@ IF NOT DEFINED DEPLOYMENT_TARGET (
   SET DEPLOYMENT_TARGET=%ARTIFACTS%\wwwroot
 )
 
-IF NOT DEFINED NEXT_MANIFEST_PATH (
-  SET NEXT_MANIFEST_PATH=%ARTIFACTS%\manifest
+REM IF NOT DEFINED NEXT_MANIFEST_PATH (
+REM   SET NEXT_MANIFEST_PATH=%ARTIFACTS%\manifest
 
-  IF NOT DEFINED PREVIOUS_MANIFEST_PATH (
-    SET PREVIOUS_MANIFEST_PATH=%ARTIFACTS%\manifest
-  )
-)
+REM   IF NOT DEFINED PREVIOUS_MANIFEST_PATH (
+REM     SET PREVIOUS_MANIFEST_PATH=%ARTIFACTS%\manifest
+REM   )
+REM )
 
-IF NOT DEFINED KUDU_SYNC_CMD (
-  :: Install kudu sync
-  echo Installing Kudu Sync
-  call npm install kudusync -g --silent
-  IF !ERRORLEVEL! NEQ 0 goto error
+REM IF NOT DEFINED KUDU_SYNC_CMD (
+REM   :: Install kudu sync
+REM   echo Installing Kudu Sync
+REM   call npm install kudusync -g --silent
+REM   IF !ERRORLEVEL! NEQ 0 goto error
 
-  :: Locally just running "kuduSync" would also work
-  SET KUDU_SYNC_CMD=%appdata%\npm\kuduSync.cmd
-)
+REM   :: Locally just running "kuduSync" would also work
+REM   SET KUDU_SYNC_CMD=%appdata%\npm\kuduSync.cmd
+REM )
 goto Deployment
 
 :: Utility Functions
@@ -88,31 +88,40 @@ goto :EOF
 :Deployment
 echo Handling node.js deployment.
 
-:: 1. KuduSync
-IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
-  IF !ERRORLEVEL! NEQ 0 goto error
-)
+REM :: 1. KuduSync
+REM IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+REM   call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+REM   IF !ERRORLEVEL! NEQ 0 goto error
+REM )
 
 :: 2. Select node version
 call :SelectNodeVersion
 
 :: 3. Install npm packages
-IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install --production
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+  pushd "%DEPLOYMENT_SOURCE%"
+  call :ExecuteCmd !NPM_CMD! install
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+echo Handling Angular build   
+:: 4. Build ng app
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+  pushd "%DEPLOYMENT_SOURCE%"
+  call :ExecuteCmd !NPM_CMD! run build
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
 
-echo Handling Angular build   
-    :: 4. Build ng app
-    IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
-      pushd "%DEPLOYMENT_TARGET%"
-      call :ExecuteCmd !NPM_CMD! run build
-      IF !ERRORLEVEL! NEQ 0 goto error
-      popd
-    )
+echo Copying files to wwwroot
+:: 5. Publishing to wwwroot
+IF EXIST "%DEPLOYMENT_SOURCE%\dist" (
+  pushd "%DEPLOYMENT_SOURCE\dist%"
+  call :ExecuteCmd RMDIR %DEPLOYMENT_TARGET%\dist /S /Q
+  call :ExecuteCmd xcopy %DEPLOYMENT_SOURCE%\dist %DEPLOYMENT_TARGET%\dist /S /E /Y /I
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
