@@ -131,7 +131,7 @@ goto end
 setlocal
 set _CMD_=%*
 call %_CMD_%
-if "%ERRORLEVEL%" NEQ "0" echo Failed exitCode=%ERRORLEVEL%, command=%_CMD_%
+if "%ERRORLEVEL%" NEQ "0" echo Failed exitCode=%ERRORLEVEL%, command=%_CMD_% > error.log
 exit /b %ERRORLEVEL%
 
 :error
