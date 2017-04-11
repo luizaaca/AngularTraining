@@ -5,6 +5,7 @@ import { AppRouter } from './utils/app-router.module';
 
 import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
+import { InfoComponent } from './components/info/info.component';
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { HomeComponent } from './components/home/home.component';
     ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        InfoComponent
     ],
     bootstrap: [AppComponent]
 })
