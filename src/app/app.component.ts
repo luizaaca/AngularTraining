@@ -7,4 +7,10 @@ import '../assets/css/styles.css';
     styleUrls: ['./app.component.css']
 })
 
-export class AppComponent { }
+export class AppComponent {
+    mostrar = false;
+
+    toogle() {
+        this.mostrar = !this.mostrar;
+    }
+ }
