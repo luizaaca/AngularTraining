@@ -19,7 +19,6 @@ module.exports = webpackMerge(commonConfig, {
 
   devServer: {
     historyApiFallback: true,
-    stats: 'minimal',
-    contentBase: './src/assets'
+    stats: 'minimal'
   }
 });
