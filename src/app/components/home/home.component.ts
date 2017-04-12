@@ -7,9 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class HomeComponent {
- mostrar = false;
-
-    toogle() {
-        this.mostrar = !this.mostrar;
-    }
+ 
 }
